@@ -1,0 +1,28 @@
+### 팀, 멤버 생성 요청
+POST http://localhost:8080/teams
+Content-Type: application/json
+
+{
+  "name": "Team Name",
+  "members": [
+    {
+      "name": "Member 1"
+    },
+    {
+      "name": "Member 2"
+    }
+  ]
+}
+
+### 팀 단건 조회 요청
+GET http://localhost:8080/teams/1
+
+### 팀 삭제 요청
+DELETE http://localhost:8080/teams/1
+
+### 샘플 데이터 생성 요청
+POST http://localhost:8080/teams/sample-test
+
+### 팀 검색 요청
+GET http://localhost:8080/teams?name=sharilyn&page=1&size=10
+Accept: application/json

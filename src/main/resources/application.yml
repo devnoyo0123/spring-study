@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: mildang-be-spring-study
+  datasource:
+    url: jdbc:h2:mem:study  # In-memory H2 database
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+logging:
+  pattern:
+    console: "[%d{HH:mm:ss.SSS}[%-5level][%logger.%method:line%line] - %msg%n"
+  level:
+    org:
+      hibernate.orm.jdbc.bind: trace
+      hibernate.SQL: debug
