@@ -21,3 +21,4 @@
 - redis
 - spring security
   - oauth x
+- spring aop
