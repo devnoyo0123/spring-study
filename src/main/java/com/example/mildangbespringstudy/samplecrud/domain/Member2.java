@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member {
+public class Member2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +25,8 @@ public class Member {
         this.team = team;
     }
 
-    public static Member of(String name) {
-        return new Member(null, name, null);
+    public static Member2 of(String name) {
+        return new Member2(null, name, null);
     }
 
     public void setName(String name) {
