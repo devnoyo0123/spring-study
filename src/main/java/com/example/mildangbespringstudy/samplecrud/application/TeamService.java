@@ -2,7 +2,7 @@ package com.example.mildangbespringstudy.samplecrud.application;
 
 import com.example.mildangbespringstudy.samplecrud.application.dto.*;
 import com.example.mildangbespringstudy.samplecrud.dataaccess.TeamRepository;
-import com.example.mildangbespringstudy.samplecrud.domain.Member;
+import com.example.mildangbespringstudy.samplecrud.domain.Member2;
 import com.example.mildangbespringstudy.samplecrud.domain.Team;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,20 +26,20 @@ public class TeamService {
         // TeamCreateRequest에 포함된 멤버 정보를 사용하여 Member 객체 생성 및 Team에 추가
         if (request.getMembers() != null && !request.getMembers().isEmpty()) {
             for (MemberCreateRequest memberReq : request.getMembers()) {
-                Member member = new Member();
-                member.setName(memberReq.getName());
+                Member2 member2 = new Member2();
+                member2.setName(memberReq.getName());
                 // Team과 Member 연결
-                team.addMember(member);
+                team.addMember(member2);
             }
         }
         Team savedTeam = teamRepository.save(team);
 
-        return TeamResponse.of(savedTeam.getId(), savedTeam.getName(), savedTeam.getMembers());
+        return TeamResponse.of(savedTeam.getId(), savedTeam.getName(), savedTeam.getMember2s());
     }
 
     public TeamResponse getTeamBy(Long id) {
         return teamRepository.findById(id)
-                .map(team -> TeamResponse.of(team.getId(), team.getName(), team.getMembers()))
+                .map(team -> TeamResponse.of(team.getId(), team.getName(), team.getMember2s()))
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 팀입니다."));
     }
 
