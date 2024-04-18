@@ -62,10 +62,31 @@ public class TeamController {
                 Member2 member2 = new Member2();
                 member2.setName(faker.name().username());
                 team.addMember(member2);
+//                member2.setTeam(team);
             }
 
             teamService.saveTeam(team); // 수정된 부분: TeamService에 saveTeam 메서드 구현 필요
         }
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/sample-test2")
+    public ResponseEntity<Void> testRelatedMapping() {
+        Team team = new Team();
+        team.setName("team1");
+
+
+        Member2 member1 = new Member2();
+        member1.setName("member1");
+        member1.setTeam(team);
+
+        Member2 member2 = new Member2();
+        member2.setName("member2");
+        member2.setTeam(team);
+
+
+        teamService.saveTeam(team);
 
         return ResponseEntity.ok().build();
     }
