@@ -5,7 +5,7 @@ import com.example.mildangbespringstudy.samplecrud.application.dto.TeamCreateReq
 import com.example.mildangbespringstudy.samplecrud.application.dto.TeamResponse;
 import com.example.mildangbespringstudy.samplecrud.application.dto.TeamSearchRequest;
 import com.example.mildangbespringstudy.samplecrud.application.dto.TeamSummaryResponse;
-import com.example.mildangbespringstudy.samplecrud.domain.Member;
+import com.example.mildangbespringstudy.samplecrud.domain.Member2;
 import com.example.mildangbespringstudy.samplecrud.domain.Team;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
@@ -59,9 +59,9 @@ public class TeamController {
             int memberCount = 5 + random.nextInt(6); // 5~10 사이의 멤버 수
 
             for (int j = 0; j < memberCount; j++) {
-                Member member = new Member();
-                member.setName(faker.name().username());
-                team.addMember(member);
+                Member2 member2 = new Member2();
+                member2.setName(faker.name().username());
+                team.addMember(member2);
             }
 
             teamService.saveTeam(team); // 수정된 부분: TeamService에 saveTeam 메서드 구현 필요
