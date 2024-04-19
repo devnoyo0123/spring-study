@@ -16,12 +16,16 @@
 - spring-data-jpa
 - query-dsl
 - junit5
+- 부하테스트
+- 에러처리
 - testcontainer
 - kafka
 - redis
 - spring security
   - oauth x
 - spring aop
+- spring batch
+  - 스케줄러
 
 ## 스터디 로그
 https://github.com/devnoyo0123/spring-study/tree/main/study-log
