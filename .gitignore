@@ -34,3 +34,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+### h2
+*.db
