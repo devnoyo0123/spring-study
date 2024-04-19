@@ -5,7 +5,7 @@
 - java 17
 - dependencies
   - web
-  - spring data jpa
+  - spring-data-jpa
   - mysql
   - h2
   - lombok
@@ -13,10 +13,12 @@
 
 ## 스터디 주제
 - springboot
+  - h2
+  - swagger
 - spring-data-jpa
-- query-dsl
+  - query-dsl
 - junit5
-- 부하테스트
+  - 부하테스트
 - 에러처리
 - testcontainer
 - kafka
