@@ -18,4 +18,8 @@ public class SMIDto {
     private UUID id;
     private Integer completeRate;
     private List<SUIDto> SUIList = new ArrayList<>();
+
+    public static SMIDto of(UUID id, Integer completeRate, List<SUIDto> SUIList) {
+        return new SMIDto(id, completeRate, SUIList);
+    }
 }

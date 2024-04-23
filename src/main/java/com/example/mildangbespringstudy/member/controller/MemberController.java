@@ -24,7 +24,7 @@ public class MemberController {
         return ResponseEntity.ok("100 members created");
     }
 
-    @Operation(summary = "TODO: Implement this API")
+    @Operation(summary = "[O] TODO: Implement this API")
     @GetMapping
     public ResponseEntity<List<Member>> getAllMembers() {
         List<Member> members = memberService.getAllMembers();
@@ -32,7 +32,7 @@ public class MemberController {
     }
 
 
-    @Operation(summary = "TODO: Implement this API")
+    @Operation(summary = "[O] TODO: Implement this API")
     @GetMapping("/{id}")
     public ResponseEntity<Member> getMemberById(@PathVariable Long id) {
         Member member = memberService.getMemberById(id);

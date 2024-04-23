@@ -26,7 +26,7 @@ public class FeedController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary = "TODO: Implement this API")
+    @Operation(summary = "[ㅇ] TODO: Implement this API")
     @GetMapping
     public ResponseEntity<List<FeedDto>> getFeeds(FeedSearchRequest request) {
         /**
@@ -36,7 +36,7 @@ public class FeedController {
         return ResponseEntity.ok(feeds);
     }
 
-    @Operation(summary = "TODO: Implement this API")
+    @Operation(summary = "[ㅇ] TODO: Implement this API")
     @GetMapping("/{id}")
     public ResponseEntity<FeedDto> getFeedById(@PathVariable Long id) {
         /**

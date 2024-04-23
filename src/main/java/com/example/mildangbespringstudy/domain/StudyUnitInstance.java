@@ -1,6 +1,8 @@
 package com.example.mildangbespringstudy.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,9 +25,11 @@ public class StudyUnitInstance {
 
     private int completeRate;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private StudyModuleInstance studyModuleInstance;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "studyUnitInstance", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudyActivityInstance> studyActivityInstanceList = new ArrayList<>();
 

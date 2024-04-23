@@ -2,6 +2,8 @@ package com.example.mildangbespringstudy.domain;
 
 
 import com.example.mildangbespringstudy.feed.domain.Feed;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,9 +26,11 @@ public class StudyModuleInstance {
 
     private int completeRate;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "studyModuleInstance", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudyUnitInstance> studyUnitInstanceList = new ArrayList<>();
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Feed feed;
 

@@ -11,6 +11,7 @@ import com.example.mildangbespringstudy.feed.dataaccess.FeedRepository;
 import com.example.mildangbespringstudy.feed.domain.Feed;
 import com.example.mildangbespringstudy.member.dataaccess.MemberJpaRepository;
 import com.example.mildangbespringstudy.member.domain.Member;
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,13 +64,15 @@ public class FeedService {
          * TODO: FeedRepository를 이용하여 피드, SMI, SUI, SAI를 검색하는 코드를 작성하세요.
          * FeedSearchRequest 객체를 이용하여 검색 조건을 받아오세요.
          */
-        return null;
+        return feedRepository.searchFeeds(request);
     }
 
     public FeedDto getFeedById(Long id) {
         /**
          * TODO: FeedRepository를 이용하여 id에 해당하는 피드, SMI, SUI, SAI를 조회하는 코드를 작성하세요.
          */
-        return null;
+        Feed feed = feedRepository.findById(id).orElseThrow(() -> new RuntimeException("Feed not found with id: " + id));
+
+        return FeedDto.of(feed);
     }
 }

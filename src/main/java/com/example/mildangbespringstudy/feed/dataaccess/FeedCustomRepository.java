@@ -1,6 +1,9 @@
 package com.example.mildangbespringstudy.feed.dataaccess;
 
 
+import com.example.mildangbespringstudy.domain.QStudyActivityInstance;
+import com.example.mildangbespringstudy.domain.QStudyModuleInstance;
+import com.example.mildangbespringstudy.domain.QStudyUnitInstance;
 import com.example.mildangbespringstudy.feed.application.dto.FeedSearchRequest;
 import com.example.mildangbespringstudy.feed.domain.Feed;
 import com.example.mildangbespringstudy.feed.domain.QFeed;
@@ -16,7 +19,6 @@ import java.util.Optional;
 public class FeedCustomRepository {
 
     private final JPAQueryFactory queryFactory;
-
     public FeedCustomRepository(EntityManager em) {
         this.queryFactory = new JPAQueryFactory(em);
     }
@@ -35,6 +37,18 @@ public class FeedCustomRepository {
     }
 
     public Optional<Feed> findById(Long id) {
+        Feed feed = this.queryFactory.selectFrom(QFeed.feed)
+            .join(QStudyModuleInstance.studyModuleInstance)
+            .on(QFeed.feed.id.eq(QStudyModuleInstance.studyModuleInstance.feed.id))
+            .join(QStudyUnitInstance.studyUnitInstance)
+            .on(QStudyModuleInstance.studyModuleInstance.id.eq(QStudyUnitInstance.studyUnitInstance.studyModuleInstance.id))
+            .where(QFeed.feed.id.eq(id)).fetchOne();
+
+        System.out.println("feed -->" + feed);
+
+        return Optional.ofNullable(feed);
+
+
         /**
          * TODO: id를 이용하여 Feed를 검색하는 쿼리를 작성하세요.
          * queryDSL을 사용하여 작성합니다.
@@ -42,7 +56,6 @@ public class FeedCustomRepository {
          * 존재하지 않는 경우 Optional.empty()를 반환합니다.
          * 피드, SU, SUI, SAI를 모두 검색합니다.
          */
-        return null;
     }
 
     private BooleanExpression memberNameLike(String name) {

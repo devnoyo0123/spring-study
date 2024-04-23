@@ -1,6 +1,7 @@
 package com.example.mildangbespringstudy.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class StudyActivityInstance {
 
     private Boolean isCorrect;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private StudyUnitInstance studyUnitInstance;
 

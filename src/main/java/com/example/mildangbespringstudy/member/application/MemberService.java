@@ -28,14 +28,17 @@ public class MemberService {
         /**
          * TODO: MemberJpaRepository를 이용하여 모든 Member를 조회하는 코드를 작성하세요.
          */
-        return null;
+        return memberRepository.findAll();
     }
 
     public Member getMemberById(Long id) {
         /**
          * TODO: MemberJpaRepository를 이용하여 id에 해당하는 Member를 조회하는 코드를 작성하세요.
          */
-        return null;
+        Member member = memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 id의 Member가 존재하지 않습니다."));
+        System.out.println("member -->" + member);
+
+        return member;
     }
 }
 

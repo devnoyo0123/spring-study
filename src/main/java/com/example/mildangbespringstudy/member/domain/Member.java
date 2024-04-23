@@ -1,6 +1,7 @@
 package com.example.mildangbespringstudy.member.domain;
 
 import com.example.mildangbespringstudy.feed.domain.Feed;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class Member {
     private String password;
     private String name;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "member")
     List<Feed> feedList = new ArrayList<>();
 }

@@ -19,4 +19,8 @@ public class SUIDto {
     private UUID id;
     private Integer completeRate;
     private List<SAIDto> SAIList = new ArrayList<>();
+
+    public static SUIDto of(UUID id, Integer completeRate, List<SAIDto> SAIList) {
+        return new SUIDto(id, completeRate, SAIList);
+    }
 }
