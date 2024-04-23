@@ -11,11 +11,13 @@ import com.example.mildangbespringstudy.feed.dataaccess.FeedRepository;
 import com.example.mildangbespringstudy.feed.domain.Feed;
 import com.example.mildangbespringstudy.member.dataaccess.MemberJpaRepository;
 import com.example.mildangbespringstudy.member.domain.Member;
+import com.example.mildangbespringstudy.samplecrud.application.dto.TeamResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
@@ -59,17 +61,13 @@ public class FeedService {
     }
 
     public List<FeedDto> searchFeeds(FeedSearchRequest request) {
-        /**
-         * TODO: FeedRepository를 이용하여 피드, SMI, SUI, SAI를 검색하는 코드를 작성하세요.
-         * FeedSearchRequest 객체를 이용하여 검색 조건을 받아오세요.
-         */
-        return null;
+        List<FeedDto> feedDtoList = feedRepository.searchFeeds(request);
+        return feedDtoList;
     }
 
     public FeedDto getFeedById(Long id) {
-        /**
-         * TODO: FeedRepository를 이용하여 id에 해당하는 피드, SMI, SUI, SAI를 조회하는 코드를 작성하세요.
-         */
-        return null;
+        return feedRepository.findById(id).map(feed -> FeedDto.of(feed.getId(), feed.getSMIList()))
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 피드입니다."));
+
     }
 }

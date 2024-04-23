@@ -16,4 +16,11 @@ import java.util.List;
 public class FeedDto {
     private Long id;
     private List<SMIDto> SMIList= new ArrayList<>();
+
+    public static FeedDto of(Long id, List<SMIDto> SMIList) {
+        FeedDto feedDto = new FeedDto();
+        feedDto.id = id;
+        feedDto.SMIList = SMIList;
+        return feedDto;
+    }
 }

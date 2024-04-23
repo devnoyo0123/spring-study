@@ -27,7 +27,7 @@ public class FeedRepositoryImpl implements FeedRepository{
     }
 
     @Override
-    public Optional<Feed> findById(Long id) {
+    public Optional<FeedDto> findById(Long id) {
         return feedCustomRepository.findById(id);
     }
 }

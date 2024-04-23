@@ -26,22 +26,16 @@ public class FeedController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary = "TODO: Implement this API")
+    @Operation(summary = "feed 조회 API입니다.")
     @GetMapping
     public ResponseEntity<List<FeedDto>> getFeeds(FeedSearchRequest request) {
-        /**
-         * TODO
-         */
         List<FeedDto> feeds = feedService.searchFeeds(request);
         return ResponseEntity.ok(feeds);
     }
 
-    @Operation(summary = "TODO: Implement this API")
+    @Operation(summary = "feed 단건 조회 API입니다.")
     @GetMapping("/{id}")
     public ResponseEntity<FeedDto> getFeedById(@PathVariable Long id) {
-        /**
-         * TODO
-         */
         FeedDto feed = feedService.getFeedById(id);
         return ResponseEntity.ok(feed);
     }

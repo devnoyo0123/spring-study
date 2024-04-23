@@ -13,5 +13,5 @@ public interface FeedRepository {
 
     List<FeedDto> searchFeeds(FeedSearchRequest request);
 
-    Optional<Feed> findById(Long id);
+    Optional<FeedDto> findById(Long id);
 }
