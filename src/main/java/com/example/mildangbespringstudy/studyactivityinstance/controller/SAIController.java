@@ -20,7 +20,7 @@ public class SAIController {
     private final SAIService service;
 
 
-    @Operation(summary = "TODO: Implement this API")
+    @Operation(summary = "[ㅇ] TODO: Implement this API")
     @PutMapping("/{id}/answer")
     public ResponseEntity<SAIDto> updateAnswer(@PathVariable UUID id, @RequestBody UpdateAnswerRequest request) {
         StudyActivityInstance sai = service.updateAnswer(id, request);

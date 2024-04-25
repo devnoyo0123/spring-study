@@ -11,7 +11,7 @@ public interface FeedRepository {
 
     void save(Feed feed);
 
-    List<FeedDto> searchFeeds(FeedSearchRequest request);
+    List<Feed> searchFeeds(FeedSearchRequest request);
 
     Optional<Feed> findById(Long id);
 }

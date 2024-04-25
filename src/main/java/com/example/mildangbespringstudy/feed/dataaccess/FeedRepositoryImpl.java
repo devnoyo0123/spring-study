@@ -22,7 +22,7 @@ public class FeedRepositoryImpl implements FeedRepository{
     }
 
     @Override
-    public List<FeedDto> searchFeeds(FeedSearchRequest request) {
+    public List<Feed> searchFeeds(FeedSearchRequest request) {
         return feedCustomRepository.searchFeeds(request);
     }
 

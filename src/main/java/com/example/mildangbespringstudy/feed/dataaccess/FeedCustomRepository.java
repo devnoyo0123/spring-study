@@ -7,6 +7,7 @@ import com.example.mildangbespringstudy.domain.QStudyUnitInstance;
 import com.example.mildangbespringstudy.feed.application.dto.FeedSearchRequest;
 import com.example.mildangbespringstudy.feed.domain.Feed;
 import com.example.mildangbespringstudy.feed.domain.QFeed;
+import com.example.mildangbespringstudy.member.domain.QMember;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
@@ -23,7 +24,7 @@ public class FeedCustomRepository {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    public List<FeedDto> searchFeeds(FeedSearchRequest request) {
+    public List<Feed> searchFeeds(FeedSearchRequest request) {
         /**
          * TODO: FeedSearchRequest에 담긴 정보를 이용하여 Feed를 검색하는 쿼리를 작성하세요.
          * queryDSL을 사용하여 작성합니다.
@@ -33,7 +34,19 @@ public class FeedCustomRepository {
          * 피드, SU, SUI, SAI를 모두 검색합니다.
          * 검색된 Feed를 FeedDto로 변환하여 반환합니다.
          */
-        return null;
+        BooleanExpression nameCondition = memberNameLike(request.getMemberName());
+
+        return this.queryFactory.selectFrom(QFeed.feed)
+            .join(QMember.member)
+            .on(QFeed.feed.member.id.eq(QMember.member.id))
+            .join(QStudyModuleInstance.studyModuleInstance)
+            .on(QFeed.feed.id.eq(QStudyModuleInstance.studyModuleInstance.feed.id))
+            .join(QStudyUnitInstance.studyUnitInstance)
+            .on(QStudyModuleInstance.studyModuleInstance.id.eq(QStudyUnitInstance.studyUnitInstance.studyModuleInstance.id))
+            .where(nameCondition)
+            .offset(request.getOffset())
+            .limit(request.getSize())
+            .fetch();
     }
 
     public Optional<Feed> findById(Long id) {

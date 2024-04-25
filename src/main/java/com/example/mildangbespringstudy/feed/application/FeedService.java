@@ -64,7 +64,9 @@ public class FeedService {
          * TODO: FeedRepository를 이용하여 피드, SMI, SUI, SAI를 검색하는 코드를 작성하세요.
          * FeedSearchRequest 객체를 이용하여 검색 조건을 받아오세요.
          */
-        return feedRepository.searchFeeds(request);
+        List<Feed> feedList = feedRepository.searchFeeds(request);
+
+        return feedList.stream().map(FeedDto::of).toList();
     }
 
     public FeedDto getFeedById(Long id) {

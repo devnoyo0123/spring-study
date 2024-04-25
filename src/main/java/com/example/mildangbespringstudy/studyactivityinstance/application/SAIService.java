@@ -22,6 +22,14 @@ public class SAIService {
          * SMI, SUI 진행율 업데이트해주세요.
          * 업데이트된 StudyActivityInstance를 반환합니다.
          */
-        return null;
+        StudyActivityInstance sai = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 SAI 입니다."));
+
+        sai.setUserAnswer(request.userAnswer());
+        sai.setIsCorrect(sai.getAnswer().equals(sai.getUserAnswer()));
+        sai.getStudyUnitInstance().setCompleteRate(sai.getStudyUnitInstance().getCompleteRate() + 1);
+        sai.getStudyUnitInstance().getStudyModuleInstance().setCompleteRate(sai.getStudyUnitInstance().getStudyModuleInstance().getCompleteRate() + 1);
+        repository.save(sai);
+
+        return sai;
     }
 }
