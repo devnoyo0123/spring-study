@@ -67,16 +67,13 @@ public class FeedCustomRepository {
             List<StudyUnitInstance> collectedSUIs = smi.getStudyUnitInstanceList().stream().map(sui -> {
                 List<StudyActivityInstance> collectedSAIs = sui.getStudyActivityInstanceList().stream()
                         .toList();
-                sui.getStudyActivityInstanceList().clear();
                 sui.getStudyActivityInstanceList().addAll(collectedSAIs);
                 return sui;
             }).toList();
-            smi.getStudyUnitInstanceList().clear();
             smi.getStudyUnitInstanceList().addAll(collectedSUIs);
             return smi;
         }).toList();
 
-        foundFeed.getStudyModuleInstanceList().clear();
         foundFeed.getStudyModuleInstanceList().addAll(collectedSMIs);
 
         return Optional.of(foundFeed);
