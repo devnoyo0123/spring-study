@@ -13,7 +13,14 @@ spring:
 #      path: /h2-console
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
+#    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.H2Dialect
+#        default_batch_fetch_size: 100
 
 
 logging:

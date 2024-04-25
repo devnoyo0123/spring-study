@@ -62,7 +62,6 @@ public class TeamController {
                 Member2 member2 = new Member2();
                 member2.setName(faker.name().username());
                 team.addMember(member2);
-//                member2.setTeam(team);
             }
 
             teamService.saveTeam(team); // 수정된 부분: TeamService에 saveTeam 메서드 구현 필요
