@@ -7,10 +7,9 @@ import com.example.mildangbespringstudy.chap01.studyActivityInstance.application
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,12 +20,9 @@ public class SAIController {
 
 
     @Operation(summary = "TODO: Implement this API")
-    @PostMapping("/update-answer")
-    public ResponseEntity<SAIDto> updateAnswer(@RequestBody UpdateAnswerRequest request) {
-        /**
-         * TODO
-         */
-        StudyActivityInstance sai = service.updateAnswer(request);
+    @PutMapping("/{id}/answer")
+    public ResponseEntity<SAIDto> updateAnswer(@PathVariable UUID id, @RequestBody UpdateAnswerRequest request) {
+        StudyActivityInstance sai = service.updateAnswer(id, request);
         return ResponseEntity.ok(SAIDto.of(sai.getId(), sai.getAnswer(), sai.getUserAnswer(), sai.getIsCorrect()));
     }
 }

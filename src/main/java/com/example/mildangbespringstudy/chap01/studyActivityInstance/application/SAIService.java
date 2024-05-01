@@ -9,15 +9,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Service
 public class SAIService {
     private final SAIJpaRepository repository;
 
     @Transactional
-    public StudyActivityInstance updateAnswer(UpdateAnswerRequest request) {
-        StudyActivityInstance sai = repository.findById(request.studyActivityInstanceId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid StudyActivityInstance ID: " + request.studyActivityInstanceId()));
+    public StudyActivityInstance updateAnswer(UUID id, UpdateAnswerRequest request) {
+        StudyActivityInstance sai = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid StudyActivityInstance ID: " + id));
 
         sai.setUserAnswer(request.userAnswer());
         sai.setIsCorrect(sai.getAnswer() == request.userAnswer());
