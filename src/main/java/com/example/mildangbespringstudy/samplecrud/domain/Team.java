@@ -21,18 +21,18 @@ public class Team {
     private String name;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Member2> member2s = new ArrayList<>();
+    private List<SampleMember> members = new ArrayList<>();
 
     // 팀에 멤버를 추가하는 편의 메서드
-    public void addMember(Member2 member2) {
-        member2s.add(member2);
-        member2.setTeam(this);
+    public void addMember(SampleMember member) {
+        members.add(member);
+        member.setTeam(this);
     }
 
     // 팀에서 멤버를 제거하는 편의 메서드
-    public void removeMember(Member2 member2) {
-        member2s.remove(member2);
-        member2.setTeam(null);
+    public void removeMember(SampleMember member) {
+        members.remove(member);
+        member.setTeam(null);
     }
 
     public void setName(String name) {

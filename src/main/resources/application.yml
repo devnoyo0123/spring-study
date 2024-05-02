@@ -3,7 +3,7 @@ spring:
     name: mildang-be-spring-study
   datasource:
 #    url: jdbc:h2:mem:study  # In-memory H2 database
-    url: jdbc:h2:./h2db;AUTO_SERVER=true  # In-memory H2 database
+    url: jdbc:h2:./h2db;AUTO_SERVER=true;mode=mysql  # In-memory H2 database
     username: sa
     password:
     driver-class-name: org.h2.Driver

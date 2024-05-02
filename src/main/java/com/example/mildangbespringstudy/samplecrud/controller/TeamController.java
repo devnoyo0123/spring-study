@@ -5,9 +5,10 @@ import com.example.mildangbespringstudy.samplecrud.application.dto.TeamCreateReq
 import com.example.mildangbespringstudy.samplecrud.application.dto.TeamResponse;
 import com.example.mildangbespringstudy.samplecrud.application.dto.TeamSearchRequest;
 import com.example.mildangbespringstudy.samplecrud.application.dto.TeamSummaryResponse;
-import com.example.mildangbespringstudy.samplecrud.domain.Member2;
+import com.example.mildangbespringstudy.samplecrud.domain.SampleMember;
 import com.example.mildangbespringstudy.samplecrud.domain.Team;
 import com.github.javafaker.Faker;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class TeamController {
     private final TeamService teamService;
 
     @PostMapping
-    public ResponseEntity<TeamResponse> createTeam(@RequestBody TeamCreateRequest request) {
+    public ResponseEntity<TeamResponse> createTeam(@Valid @RequestBody TeamCreateRequest request) {
         TeamResponse teamResponse = teamService.createTeam(request);
         return ResponseEntity.ok(teamResponse);
     }
@@ -59,9 +60,9 @@ public class TeamController {
             int memberCount = 5 + random.nextInt(6); // 5~10 사이의 멤버 수
 
             for (int j = 0; j < memberCount; j++) {
-                Member2 member2 = new Member2();
-                member2.setName(faker.name().username());
-                team.addMember(member2);
+                SampleMember member = new SampleMember();
+                member.setName(faker.name().username());
+                team.addMember(member);
             }
 
             teamService.saveTeam(team); // 수정된 부분: TeamService에 saveTeam 메서드 구현 필요
@@ -76,11 +77,11 @@ public class TeamController {
         team.setName("team1");
 
 
-        Member2 member1 = new Member2();
+        SampleMember member1 = new SampleMember();
         member1.setName("member1");
         member1.setTeam(team);
 
-        Member2 member2 = new Member2();
+        SampleMember member2 = new SampleMember();
         member2.setName("member2");
         member2.setTeam(team);
 

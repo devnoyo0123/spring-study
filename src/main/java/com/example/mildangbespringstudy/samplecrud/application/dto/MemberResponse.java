@@ -1,6 +1,6 @@
 package com.example.mildangbespringstudy.samplecrud.application.dto;
 
-import com.example.mildangbespringstudy.samplecrud.domain.Member2;
+import com.example.mildangbespringstudy.samplecrud.domain.SampleMember;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,8 +19,8 @@ public class MemberResponse {
         return memberResponse;
     }
 
-    public static List<MemberResponse> ofList(List<Member2> member2s) {
-        return member2s.stream()
+    public static List<MemberResponse> ofList(List<SampleMember> members) {
+        return members.stream()
                 .map(member -> MemberResponse.of(member.getId(), member.getName()))
                 .toList();
     }
