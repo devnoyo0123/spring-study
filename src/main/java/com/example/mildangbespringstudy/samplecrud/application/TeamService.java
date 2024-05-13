@@ -2,6 +2,7 @@ package com.example.mildangbespringstudy.samplecrud.application;
 
 import com.example.mildangbespringstudy.samplecrud.application.dto.*;
 import com.example.mildangbespringstudy.samplecrud.dataaccess.TeamRepository;
+import com.example.mildangbespringstudy.samplecrud.dataaccess.TeamRepository2;
 import com.example.mildangbespringstudy.samplecrud.domain.SampleMember;
 import com.example.mildangbespringstudy.samplecrud.domain.Team;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class TeamService {
+
+    private final TeamRepository2 teamRepository2;
 
     private final TeamRepository teamRepository;
 

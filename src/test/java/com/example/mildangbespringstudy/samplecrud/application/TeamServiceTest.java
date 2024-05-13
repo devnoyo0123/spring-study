@@ -4,7 +4,6 @@ package com.example.mildangbespringstudy.samplecrud.application;
 import com.example.mildangbespringstudy.samplecrud.application.dto.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
@@ -17,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Bean을 테스트하는 방법
  *
  */
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // 추가!!
 @SpringBootTest
 @SqlGroup(
         {
@@ -26,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         }
 )
 class TeamServiceTest {
-
 
     /**
      * new로 생성해서 주입하지 않습니다.

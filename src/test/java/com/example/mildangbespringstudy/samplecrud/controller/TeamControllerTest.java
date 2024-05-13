@@ -59,7 +59,6 @@ class TeamControllerTest {
                 .andExpect(jsonPath("$.members[0].id").value(1L))
                 .andExpect(jsonPath("$.members[0].name").value("이름")
         );
-
     }
 
     @DisplayName("name이 없는 경우 400 Bad Request를 반환한다")

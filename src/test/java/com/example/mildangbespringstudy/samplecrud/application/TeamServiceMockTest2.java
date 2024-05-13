@@ -2,6 +2,7 @@ package com.example.mildangbespringstudy.samplecrud.application;
 
 import com.example.mildangbespringstudy.samplecrud.application.dto.*;
 import com.example.mildangbespringstudy.samplecrud.dataaccess.TeamRepository;
+import com.example.mildangbespringstudy.samplecrud.dataaccess.TeamRepository2;
 import com.example.mildangbespringstudy.samplecrud.domain.SampleMember;
 import com.example.mildangbespringstudy.samplecrud.domain.Team;
 import org.junit.jupiter.api.Test;
@@ -20,12 +21,15 @@ public class TeamServiceMockTest2 {
     private final TeamService teamService;
 
     private final TeamRepository teamRepository;
+    private final TeamRepository2 teamRepository2;
 
     public TeamServiceMockTest2() {
 
         this.teamRepository = mock(TeamRepository.class);
+        this.teamRepository2 = mock(TeamRepository2.class);
 
         this.teamService = new TeamService(
+                teamRepository2,
                 teamRepository
         );
     }
