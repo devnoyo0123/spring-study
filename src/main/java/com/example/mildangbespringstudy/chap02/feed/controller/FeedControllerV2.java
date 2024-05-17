@@ -4,7 +4,7 @@ import com.example.mildangbespringstudy.chap02.feed.application.FeedServiceV2;
 import com.example.mildangbespringstudy.chap02.feed.application.dto.CreateFeedRequestV2;
 import com.example.mildangbespringstudy.chap02.feed.application.dto.FeedSearchRequestV2;
 import com.example.mildangbespringstudy.chap02.feed.dataaccess.FeedDtoV2;
-import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,22 +24,16 @@ public class FeedControllerV2 {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary = "TODO: Implement this API")
     @GetMapping
-    public ResponseEntity<List<FeedDtoV2>> getFeeds(FeedSearchRequestV2 request) {
-        /**
-         * TODO
-         */
+    public ResponseEntity<List<FeedDtoV2>> getFeeds(@Valid FeedSearchRequestV2 request) {
+
         List<FeedDtoV2> feeds = feedServiceV2.searchFeeds(request);
         return ResponseEntity.ok(feeds);
     }
 
-    @Operation(summary = "TODO: Implement this API")
     @GetMapping("/{id}")
     public ResponseEntity<FeedDtoV2> getFeedById(@PathVariable Long id) {
-        /**
-         * TODO
-         */
+
         FeedDtoV2 feed = feedServiceV2.getFeedById(id);
         return ResponseEntity.ok(feed);
     }

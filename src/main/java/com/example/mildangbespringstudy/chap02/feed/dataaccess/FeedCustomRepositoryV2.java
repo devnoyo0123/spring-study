@@ -45,7 +45,7 @@ public class FeedCustomRepositoryV2 {
                 }).collect(Collectors.toList());
                 return new SMIDto(s.getId(), s.getCompleteRate(), suiList);
             }).collect(Collectors.toList());
-            return new FeedDtoV2(f.getId(), smiList);
+            return new FeedDtoV2(f.getId(), f.getMemberV2().getName(), f.getMemberV2().getId(), smiList);
         }).collect(Collectors.toList());
     }
 

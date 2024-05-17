@@ -2,7 +2,6 @@ package com.example.mildangbespringstudy.chap02.member.controller;
 
 import com.example.mildangbespringstudy.chap02.member.application.MemberServiceV2;
 import com.example.mildangbespringstudy.chap02.member.domain.MemberV2;
-import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,23 +21,17 @@ public class MemberControllerV2 {
         return ResponseEntity.ok("100 members created");
     }
 
-    @Operation(summary = "TODO: Implement this API")
     @GetMapping
-    public ResponseEntity<List<MemberV2>> getAllMembers() {
-        /**
-         * TODO
-         */
-        List<MemberV2> memberV2s = memberServiceV2.getAllMembers();
+    public ResponseEntity<List<MemberV2>> findAllMembers() {
+
+        List<MemberV2> memberV2s = memberServiceV2.findAllMembers();
         return ResponseEntity.ok(memberV2s);
     }
 
 
-    @Operation(summary = "TODO: Implement this API")
     @GetMapping("/{id}")
     public ResponseEntity<MemberV2> getMemberById(@PathVariable Long id) {
-        /**
-         * TODO
-         */
+
         MemberV2 memberV2 = memberServiceV2.getMemberById(id);
         return ResponseEntity.ok(memberV2);
     }

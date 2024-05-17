@@ -66,8 +66,10 @@ public class FeedServiceV2 {
         FeedV2 feedV2 = feedRepositoryV2.findById(id)
                 .orElseThrow(() -> new RuntimeException("Feed not found with id: " + id));
 
-        return new FeedDtoV2(
+        return FeedDtoV2.from(
                 feedV2.getId(),
+                feedV2.getMemberV2().getName(),
+                feedV2.getMemberV2().getId(),
                 feedV2.getStudyModuleInstanceV2List().stream().map(smi -> new SMIDto(
                         smi.getId(),
                         smi.getCompleteRate(),

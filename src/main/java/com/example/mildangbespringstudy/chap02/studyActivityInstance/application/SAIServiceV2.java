@@ -23,7 +23,7 @@ public class SAIServiceV2 {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid StudyActivityInstance ID: " + id));
 
         sai.setUserAnswer(request.userAnswer());
-        sai.setIsCorrect(sai.getAnswer() == request.userAnswer());
+        sai.setIsCorrect(sai.getAnswer().equals(request.userAnswer()));
         StudyUnitInstanceV2 sui = sai.getStudyUnitInstanceV2();
         StudyModuleInstanceV2 smi = sui.getStudyModuleInstanceV2();
         sui.calculateCompleteRate();

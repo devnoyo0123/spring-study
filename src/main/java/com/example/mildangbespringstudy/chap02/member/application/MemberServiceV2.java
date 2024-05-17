@@ -24,12 +24,12 @@ public class MemberServiceV2 {
         memberRepository.saveAll(memberV2s);
     }
 
-    public List<MemberV2> getAllMembers() {
+    public List<MemberV2> findAllMembers() {
         return memberRepository.findAll();
     }
 
     public MemberV2 getMemberById(Long id) {
         return memberRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Member not found with id: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Member not found with id: " + id));
     }
 }
