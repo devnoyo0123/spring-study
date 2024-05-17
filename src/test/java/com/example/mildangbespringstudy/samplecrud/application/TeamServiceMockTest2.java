@@ -1,5 +1,6 @@
 package com.example.mildangbespringstudy.samplecrud.application;
 
+import com.example.mildangbespringstudy.chap02.external.sns.SNSService;
 import com.example.mildangbespringstudy.samplecrud.application.dto.*;
 import com.example.mildangbespringstudy.samplecrud.dataaccess.TeamRepository;
 import com.example.mildangbespringstudy.samplecrud.dataaccess.TeamRepository2;
@@ -22,15 +23,18 @@ public class TeamServiceMockTest2 {
 
     private final TeamRepository teamRepository;
     private final TeamRepository2 teamRepository2;
+    private final SNSService snsService;
 
     public TeamServiceMockTest2() {
 
         this.teamRepository = mock(TeamRepository.class);
         this.teamRepository2 = mock(TeamRepository2.class);
+        this.snsService = mock(SNSService.class);
 
         this.teamService = new TeamService(
                 teamRepository2,
-                teamRepository
+                teamRepository,
+                snsService
         );
     }
 

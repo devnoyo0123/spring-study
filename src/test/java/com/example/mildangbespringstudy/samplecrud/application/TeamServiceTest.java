@@ -1,16 +1,22 @@
 package com.example.mildangbespringstudy.samplecrud.application;
 
 
+import com.example.mildangbespringstudy.chap02.external.sns.SNSService;
 import com.example.mildangbespringstudy.samplecrud.application.dto.*;
 import org.junit.jupiter.api.Test;
+import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verify;
 
 /**
  * Bean을 테스트하는 방법
@@ -30,6 +36,10 @@ class TeamServiceTest {
      */
     @Autowired
     private TeamService teamService;
+
+    @SpyBean
+    private SNSService snsService;
+
 
     @Test
     public void junitTest() {
@@ -53,6 +63,7 @@ class TeamServiceTest {
         TeamResponse teamResponse = teamService.createTeam(teamCreateRequest);
 
         // then
+        verify(snsService).send(any(String.class));
         assertEquals(teamCreateRequest.getName(),teamResponse.getName());
     }
 

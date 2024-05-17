@@ -3,6 +3,7 @@ package com.example.mildangbespringstudy.chap02.studyActivityInstance.applicatio
 import com.example.mildangbespringstudy.chap02.domain.domain.StudyActivityInstanceV2;
 import com.example.mildangbespringstudy.chap02.domain.domain.StudyModuleInstanceV2;
 import com.example.mildangbespringstudy.chap02.domain.domain.StudyUnitInstanceV2;
+import com.example.mildangbespringstudy.chap02.external.sns.SNSService;
 import com.example.mildangbespringstudy.chap02.studyActivityInstance.application.dto.UpdateAnswerRequestV2;
 import com.example.mildangbespringstudy.chap02.studyActivityInstance.dataaccess.SAIJpaRepositoryV2;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -26,6 +28,9 @@ class SAIServiceV2Test {
 
     @Mock
     private SAIJpaRepositoryV2 repository;
+
+    @Spy
+    private SNSService snsService;
 
     @InjectMocks
     private SAIServiceV2 sut;
@@ -55,6 +60,7 @@ class SAIServiceV2Test {
         // then: 검증 단계
         verify(repository).findById(id);
         verify(repository).save(sai);
+        verify(snsService).send(any(String.class));
         assertThat(sai.getUserAnswer()).isEqualTo(userAnswer);
         assertThat(sai.getIsCorrect()).isTrue();
     }

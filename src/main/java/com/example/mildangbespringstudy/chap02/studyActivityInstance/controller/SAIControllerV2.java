@@ -17,7 +17,6 @@ public class SAIControllerV2 {
 
     private final SAIServiceV2 service;
 
-
     @PutMapping("/{id}/answer")
     public ResponseEntity<SAIDto> updateAnswer(@PathVariable UUID id, @RequestBody UpdateAnswerRequestV2 request) {
         StudyActivityInstanceV2 sai = service.updateAnswer(id, request);

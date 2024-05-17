@@ -1,5 +1,6 @@
 package com.example.mildangbespringstudy.samplecrud.application;
 
+import com.example.mildangbespringstudy.chap02.external.sns.SNSService;
 import com.example.mildangbespringstudy.samplecrud.application.dto.*;
 import com.example.mildangbespringstudy.samplecrud.dataaccess.TeamRepository;
 import com.example.mildangbespringstudy.samplecrud.dataaccess.TeamRepository2;
@@ -20,6 +21,8 @@ public class TeamService {
 
     private final TeamRepository teamRepository;
 
+    private final SNSService snsService;
+
     @Transactional
     public TeamResponse createTeam(TeamCreateRequest request) {
         // TeamCreateRequest에서 이름을 추출하여 Team 객체 생성
@@ -36,6 +39,7 @@ public class TeamService {
             }
         }
         Team savedTeam = teamRepository.save(team);
+        snsService.send(savedTeam.getName() + " 팀이 생성되었습니다.");
 
         return TeamResponse.of(savedTeam.getId(), savedTeam.getName(), savedTeam.getMembers());
     }

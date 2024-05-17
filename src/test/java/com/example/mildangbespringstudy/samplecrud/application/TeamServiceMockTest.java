@@ -1,5 +1,6 @@
 package com.example.mildangbespringstudy.samplecrud.application;
 
+import com.example.mildangbespringstudy.chap02.external.sns.SNSService;
 import com.example.mildangbespringstudy.samplecrud.application.dto.*;
 import com.example.mildangbespringstudy.samplecrud.dataaccess.TeamRepository;
 import com.example.mildangbespringstudy.samplecrud.domain.SampleMember;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
@@ -30,6 +32,8 @@ public class TeamServiceMockTest {
     @Mock
     private TeamRepository teamRepository;
 
+    @Spy
+    private SNSService snsService;
 
     /**
      * mockito에서 제공하는 @InjectMocks 어노테이션을 사용하여 Mock 객체를 주입합니다.
