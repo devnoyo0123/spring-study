@@ -38,3 +38,7 @@ out/
 
 ### h2
 *.db
+
+application-*.yml
+
+infra/local/dbdata
