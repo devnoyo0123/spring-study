@@ -57,6 +57,11 @@ public class FeedServiceV2 {
         }
     }
 
+    @Transactional
+    public void createFeed(FeedV2 feed) {
+        feedRepositoryV2.save(feed);
+    }
+
     @Transactional(readOnly = true)
     public List<FeedDtoV2> searchFeeds(FeedSearchRequestV2 request) {
         return feedRepositoryV2.searchFeeds(request);

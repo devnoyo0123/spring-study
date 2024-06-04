@@ -16,6 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "study_module_instance")
 public class StudyModuleInstance {
 
     @Id
@@ -27,6 +28,7 @@ public class StudyModuleInstance {
     private List<StudyUnitInstance> studyUnitInstanceList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "feed_id", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Feed feed;
 
     public static StudyModuleInstance of(List<StudyUnitInstance> studyUnitInstanceList) {

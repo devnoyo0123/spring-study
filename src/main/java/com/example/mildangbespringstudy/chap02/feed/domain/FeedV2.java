@@ -6,14 +6,18 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Indexed;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Entity
+@Table(name = "feed_v2", indexes = {
+        @Index(name = "idx_feed_v2_member_id", columnList = "member_id")
+})
 public class FeedV2 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +27,12 @@ public class FeedV2 {
     private List<StudyModuleInstanceV2> studyModuleInstanceV2List = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private MemberV2 memberV2;
+
+    public static FeedV2 of() {
+        return new FeedV2();
+    }
 
     public void addStudyModuleInstance(StudyModuleInstanceV2 studyModuleInstanceV2) {
         studyModuleInstanceV2List.add(studyModuleInstanceV2);

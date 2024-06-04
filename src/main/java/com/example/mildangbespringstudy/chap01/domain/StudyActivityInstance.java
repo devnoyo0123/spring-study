@@ -13,6 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "study_activity_instance")
 public class StudyActivityInstance {
 
     @Id
@@ -25,6 +26,7 @@ public class StudyActivityInstance {
     private Boolean isCorrect;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "study_unit_instance_id", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StudyUnitInstance studyUnitInstance;
 
     public static StudyActivityInstance of(int i) {

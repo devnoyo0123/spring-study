@@ -16,6 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "study_unit_instance")
 public class StudyUnitInstance {
 
     @Id
@@ -24,6 +25,7 @@ public class StudyUnitInstance {
     private int completeRate;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "study_module_instance_id", nullable = true, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private StudyModuleInstance studyModuleInstance;
 
     @OneToMany(mappedBy = "studyUnitInstance", cascade = CascadeType.ALL, orphanRemoval = true)

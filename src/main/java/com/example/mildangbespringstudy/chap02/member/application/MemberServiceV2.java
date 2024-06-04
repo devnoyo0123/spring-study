@@ -24,6 +24,13 @@ public class MemberServiceV2 {
         memberRepository.saveAll(memberV2s);
     }
 
+    @Transactional
+    public void createMember(String email, String password, String name) {
+        MemberV2 memberV2 = new MemberV2(null, email, password, name, null);
+        memberRepository.save(memberV2);
+    }
+
+
     public List<MemberV2> findAllMembers() {
         return memberRepository.findAll();
     }
