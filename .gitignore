@@ -44,3 +44,5 @@ application-*.yml
 infra/local/dbdata
 
 infra/ngrinder/*
+
+infra/scouter/*
