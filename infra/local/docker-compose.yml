@@ -7,7 +7,7 @@ services:
       MYSQL_DATABASE: study
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - 3306:3306
+      - 3309:3306
     volumes:
       - ./dbdata:/var/lib/mysql
   local-db-migrate:
