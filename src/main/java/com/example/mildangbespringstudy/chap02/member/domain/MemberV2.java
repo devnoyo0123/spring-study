@@ -1,10 +1,12 @@
 package com.example.mildangbespringstudy.chap02.member.domain;
 
 import com.example.mildangbespringstudy.chap02.feed.domain.FeedV2;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ public class MemberV2 {
     private String password;
     private String name;
 
+
     @OneToMany(mappedBy = "memberV2")
     List<FeedV2> feedList = new ArrayList<>();
 
@@ -35,5 +38,15 @@ public class MemberV2 {
     public void addFeed(FeedV2 feed) {
         feedList.add(feed);
         feed.setMemberV2(this);
+    }
+
+    @Override
+    public String toString() {
+        return "MemberV2{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

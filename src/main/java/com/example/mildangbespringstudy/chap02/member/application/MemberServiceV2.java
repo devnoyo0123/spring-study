@@ -1,13 +1,16 @@
 package com.example.mildangbespringstudy.chap02.member.application;
 
+import com.example.mildangbespringstudy.chap02.member.application.dto.MemberDtoV2;
 import com.example.mildangbespringstudy.chap02.member.dataaccess.MemberJpaRepositoryV2;
 import com.example.mildangbespringstudy.chap02.member.domain.MemberV2;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -31,12 +34,16 @@ public class MemberServiceV2 {
     }
 
 
-    public List<MemberV2> findAllMembers() {
-        return memberRepository.findAll();
+    public List<MemberDtoV2> findAllMembers() {
+        return memberRepository.findAll().stream()
+                .map(item -> MemberDtoV2.of(item.getId(), item.getEmail(), item.getName()))
+                .collect(Collectors.toList());
     }
 
-    public MemberV2 getMemberById(Long id) {
-        return memberRepository.findById(id)
+    @Cacheable(cacheNames = "localCache",  cacheResolver = "cacheResolver")
+    public MemberDtoV2 getMemberById(Long id) {
+        MemberV2 memberV2 = memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Member not found with id: " + id));
+        return MemberDtoV2.of(memberV2.getId(), memberV2.getEmail(), memberV2.getName());
     }
 }

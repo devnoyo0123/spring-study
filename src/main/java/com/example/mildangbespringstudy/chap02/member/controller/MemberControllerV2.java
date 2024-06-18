@@ -28,15 +28,15 @@ public class MemberControllerV2 {
     @GetMapping
     public ResponseEntity<List<MemberDtoV2>> findAllMembers() {
 
-        List<MemberV2> memberV2s = memberServiceV2.findAllMembers();
-        return ResponseEntity.ok(MemberDtoMapper.toDtoList(memberV2s));
+        List<MemberDtoV2> memberV2s = memberServiceV2.findAllMembers();
+        return ResponseEntity.ok(memberV2s);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<MemberV2> getMemberById(@PathVariable Long id) {
+    public ResponseEntity<MemberDtoV2> getMemberById(@PathVariable Long id) {
 
-        MemberV2 memberV2 = memberServiceV2.getMemberById(id);
-        return ResponseEntity.ok(memberV2);
+        MemberDtoV2 memberdtoV2 = memberServiceV2.getMemberById(id);
+        return ResponseEntity.ok(memberdtoV2);
     }
 }

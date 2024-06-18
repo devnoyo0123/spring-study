@@ -10,6 +10,7 @@ import com.example.mildangbespringstudy.chap02.feed.application.dto.FeedSearchRe
 import com.example.mildangbespringstudy.chap02.feed.dataaccess.*;
 import com.example.mildangbespringstudy.chap02.feed.domain.FeedV2;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,6 +68,7 @@ public class FeedServiceV2 {
         return feedRepositoryV2.searchFeeds(request);
     }
 
+    @Cacheable(cacheNames = "globalCache", cacheResolver = "cacheResolver")
     public FeedDtoV2 getFeedById(Long id) {
         FeedV2 feedV2 = feedRepositoryV2.findById(id)
                 .orElseThrow(() -> new RuntimeException("Feed not found with id: " + id));
